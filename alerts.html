@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alerts - CareConnect</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+</head>
+<body class="alerts-page">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark"><i class="fa-solid fa-heart-pulse"></i></div>
+      <div><div class="brand-name">CareConnect</div><div class="brand-subtitle">Medication Reminders</div></div>
+    </div>
+    <div class="menu-label">MENU</div>
+    <nav class="nav-menu">
+      <a class="nav-item" href="dashboard.html"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a>
+      <a class="nav-item" href="patients.html"><i class="fa-solid fa-user-group"></i><span>Patients</span></a>
+      <a class="nav-item" href="add-patient.html"><i class="fa-solid fa-person"></i><span>Add Patient</span></a>
+      <a class="nav-item" href="sms-log.html"><i class="fa-solid fa-message"></i><span>SMS Log</span></a>
+      <a class="nav-item active" href="alerts.html"><i class="fa-solid fa-bell"></i><span>Alerts</span></a>
+    </nav>
+    <div class="scheduler-card">
+      <div class="scheduler-title"><span class="live-dot"></span>Scheduler Running</div>
+      <div class="scheduler-sub">Auto-sends every 30s</div>
+    </div>
+    <div class="sidebar-user">
+      <div class="user-avatar">AD</div>
+      <div><div class="user-name">Admin</div><div class="user-role">Clinic Manager</div></div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="top-header">
+      <div>
+        <h1>Alerts</h1>
+        <p>Auto-generated when patients miss their<br class="desktop-break"> medication</p>
+      </div>
+      <div class="header-status">
+        <div class="sms-status"><span class="status-dot"></span><span>Auto-<br>SMS<br><strong>Active</strong></span></div>
+        <div class="next-check"><span class="check-dot"></span><span>Next check in<br><strong>30s</strong></span></div>
+      </div>
+    </header>
+
+    <section class="alerts-content">
+      <div class="alert-tabs">
+        <button class="alert-tab active">All</button>
+        <button class="alert-tab">Unresolved</button>
+        <button class="alert-tab">Resolved</button>
+      </div>
+
+      <section class="alerts-container">
+        <div class="alerts-empty">
+          <div class="empty-bell"><i class="fa-solid fa-bell"></i></div>
+          <h2>Loading alerts...</h2>
+          <p>Please wait while we fetch the latest alerts</p>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

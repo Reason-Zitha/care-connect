@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients - CareConnect</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark"><i class="fa-solid fa-heart-pulse"></i></div>
+        <div><div class="brand-name">CareConnect</div><div class="brand-subtitle">Medication Reminders</div></div>
+      </div>
+      <div class="menu-label">MENU</div>
+      <nav class="nav-menu">
+        <a class="nav-item" href="dashboard.html"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a>
+        <a class="nav-item active" href="patients.html"><i class="fa-solid fa-user-group"></i><span>Patients</span></a>
+        <a class="nav-item" href="add-patient.html"><i class="fa-solid fa-person"></i><span>Add Patient</span></a>
+        <a class="nav-item" href="sms-log.html"><i class="fa-solid fa-message"></i><span>SMS Log</span></a>
+        <a class="nav-item" href="alerts.html"><i class="fa-solid fa-bell"></i><span>Alerts</span></a>
+      </nav>
+      <div class="scheduler-card">
+        <div class="scheduler-title"><span class="live-dot"></span>Scheduler Running</div>
+        <div class="scheduler-sub">Auto-sends every 30s</div>
+      </div>
+      <div class="sidebar-user">
+        <div class="user-avatar">AD</div>
+        <div><div class="user-name">Admin</div><div class="user-role">Clinic Manager</div></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Patients</h1>
+          <p class="page-subtitle">Manage all registered patients and their medication adherence</p>
+        </div>
+        <div class="header-actions">
+          <a href="add-patient.html" class="btn btn-primary">Add New Patient</a>
+        </div>
+      </div>
+
+      <div class="card filter-card">
+        <div class="filter-group">
+          <div class="search-wrapper">
+            <input type="text" id="searchPatients" placeholder="Search patients..." class="search-input">
+          </div>
+          <select id="statusFilter" class="filter-select">
+            <option value="">All Statuses</option>
+            <option value="on track">On Track</option>
+            <option value="needs follow-up">Needs Follow-up</option>
+            <option value="high risk">High Risk</option>
+          </select>
+          <select class="filter-select">
+            <option value="">All Adherence</option>
+            <option value="high">80-100%</option>
+            <option value="medium">50-79%</option>
+            <option value="low">Below 50%</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="table-wrapper">
+          <table id="patientTable">
+            <thead>
+              <tr>
+                <th>Patient Name</th>
+                <th>Age</th>
+                <th>Meds</th>
+                <th>Adherence</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Rendered by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination">
+          <span class="page-info">Loading patients...</span>
+          <div class="page-buttons">
+            <button class="active">1</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
