@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Profile - CareConnect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark"><i class="fa-solid fa-heart-pulse"></i></div>
+        <div><div class="brand-name">CareConnect</div><div class="brand-subtitle">Medication Reminders</div></div>
+      </div>
+      <div class="menu-label">MENU</div>
+      <nav class="nav-menu">
+        <a class="nav-item" href="dashboard.html"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a>
+        <a class="nav-item" href="patients.html"><i class="fa-solid fa-user-group"></i><span>Patients</span></a>
+        <a class="nav-item" href="add-patient.html"><i class="fa-solid fa-person"></i><span>Add Patient</span></a>
+        <a class="nav-item" href="sms-log.html"><i class="fa-solid fa-message"></i><span>SMS Log</span></a>
+        <a class="nav-item" href="alerts.html"><i class="fa-solid fa-bell"></i><span>Alerts</span></a>
+      </nav>
+      <div class="scheduler-card">
+        <div class="scheduler-title"><span class="live-dot"></span>Scheduler Running</div>
+        <div class="scheduler-sub">Auto-sends every 30s</div>
+      </div>
+      <div class="sidebar-user">
+        <div class="user-avatar">AD</div>
+        <div><div class="user-name">Admin</div><div class="user-role">Clinic Manager</div></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <a href="patients.html" class="back-link">← Back to Patients</a>
+
+      <div class="profile-content">
+        <div class="profile-header">
+          <div class="profile-avatar">JD</div>
+          <div class="profile-info">
+            <h2>Patient Name</h2>
+            <div class="profile-details">
+              <span>Loading...</span>
+            </div>
+          </div>
+          <div class="profile-actions">
+            <button class="btn btn-primary">Contact Caregiver</button>
+            <a href="#" class="btn btn-warning">Schedule Follow-up</a>
+          </div>
+        </div>
+
+        <div class="adherence-grid">
+          <div class="card adherence-card">
+            <span class="adherence-label">Adherence (7 days)</span>
+            <div class="adherence-number">--%</div>
+            <span class="status-badge on-track"><span class="dot"></span> Loading</span>
+          </div>
+          <div class="card">
+            <span class="quick-actions-label">Quick Actions</span>
+            <div class="quick-actions">
+              <button class="btn btn-success btn-sm">Send Reminder Now</button>
+              <button class="btn btn-primary btn-sm">View Full History</button>
+              <button class="btn btn-outline btn-sm">Add Note</button>
+            </div>
+            <div class="alert-banner">
+              <span class="alert-banner-label">Alert:</span>
+              <span class="alert-banner-text">Loading patient data...</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="tabs">
+            <button class="tab active" data-tab="medications">Medications</button>
+            <button class="tab" data-tab="history">History</button>
+            <button class="tab" data-tab="caregivers">Caregivers</button>
+            <button class="tab" data-tab="notes">Notes</button>
+          </div>
+
+          <div class="tab-content active" id="tab-medications">
+            <div class="empty-state">Loading medications...</div>
+          </div>
+
+          <div class="tab-content" id="tab-history">
+            <p class="history-text">Medication history will appear here. Showing last 7 days of adherence data.</p>
+            <div class="history-grid">
+              <div class="history-day success">Mon<br><span class="history-check">✓ Taken</span></div>
+              <div class="history-day danger">Tue<br><span class="history-check">✗ Missed</span></div>
+              <div class="history-day success">Wed<br><span class="history-check">✓ Taken</span></div>
+              <div class="history-day danger">Thu<br><span class="history-check">✗ Missed</span></div>
+              <div class="history-day success">Fri<br><span class="history-check">✓ Taken</span></div>
+              <div class="history-day success">Sat<br><span class="history-check">✓ Taken</span></div>
+              <div class="history-day success">Sun<br><span class="history-check">✓ Taken</span></div>
+            </div>
+          </div>
+
+          <div class="tab-content" id="tab-caregivers">
+            <div class="caregiver-grid">
+              <!-- Rendered by JavaScript -->
+            </div>
+          </div>
+
+          <div class="tab-content" id="tab-notes">
+            <textarea class="notes-textarea" placeholder="Add clinical notes about this patient..."></textarea>
+            <button class="btn btn-primary notes-save">Save Note</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="../js/script.js"></script>
+  </body>
+</html>
