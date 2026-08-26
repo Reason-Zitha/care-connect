@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Patient - CareConnect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark"><i class="fa-solid fa-heart-pulse"></i></div>
+        <div><div class="brand-name">CareConnect</div><div class="brand-subtitle">Medication Reminders</div></div>
+      </div>
+      <div class="menu-label">MENU</div>
+      <nav class="nav-menu">
+        <a class="nav-item" href="dashboard.html"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a>
+        <a class="nav-item" href="patients.html"><i class="fa-solid fa-user-group"></i><span>Patients</span></a>
+        <a class="nav-item active" href="add-patient.html"><i class="fa-solid fa-person"></i><span>Add Patient</span></a>
+        <a class="nav-item" href="sms-log.html"><i class="fa-solid fa-message"></i><span>SMS Log</span></a>
+        <a class="nav-item" href="alerts.html"><i class="fa-solid fa-bell"></i><span>Alerts</span></a>
+      </nav>
+      <div class="scheduler-card">
+        <div class="scheduler-title"><span class="live-dot"></span>Scheduler Running</div>
+        <div class="scheduler-sub">Auto-sends every 30s</div>
+      </div>
+      <div class="sidebar-user">
+        <div class="user-avatar">AD</div>
+        <div><div class="user-name">Admin</div><div class="user-role">Clinic Manager</div></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Add New Patient</h1>
+          <p class="page-subtitle">Register a new patient and set up their medication schedule</p>
+        </div>
+      </div>
+
+      <form id="patientForm" class="card">
+        <h3 class="section-title">Patient Information</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" placeholder="e.g. Grace Mokoena" required>
+          </div>
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" id="age" placeholder="e.g. 80" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="e.g. 072 123 4567" required>
+          </div>
+          <div class="form-group">
+            <label for="language">Preferred Language</label>
+            <select id="language">
+              <option value="en">English</option>
+              <option value="zu">isiZulu</option>
+              <option value="st">Sepedi</option>
+              <option value="tn">Setswana</option>
+              <option value="xh">isiXhosa</option>
+              <option value="af">Afrikaans</option>
+            </select>
+          </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="medication-header">
+          <h3 class="section-title">Medication Schedule</h3>
+          <button type="button" id="addMedicationBtn" class="btn btn-primary btn-sm">Add Another Medication</button>
+        </div>
+        <div id="medications-container">
+          <div class="medication-entry">
+            <div class="form-group">
+              <label>Medication Name</label>
+              <input type="text" placeholder="e.g. Blood Pressure Medication">
+            </div>
+            <div class="form-group">
+              <label>Dosage</label>
+              <input type="text" placeholder="e.g. 1 tablet">
+            </div>
+            <div class="form-group">
+              <label>Time</label>
+              <input type="time" value="08:00">
+            </div>
+            <button type="button" class="btn-remove-med" data-remove-med>Remove</button>
+          </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <h3 class="section-title">Caregiver Information</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="caregiverName">Caregiver Name</label>
+            <input type="text" id="caregiverName" placeholder="e.g. Sarah Dlamini" required>
+          </div>
+          <div class="form-group">
+            <label for="caregiverPhone">Phone Number</label>
+            <input type="tel" id="caregiverPhone" placeholder="e.g. 072 987 6543" required>
+          </div>
+          <div class="form-group">
+            <label for="caregiverRelation">Relationship</label>
+            <select id="caregiverRelation">
+              <option value="daughter">Daughter</option>
+              <option value="son">Son</option>
+              <option value="spouse">Spouse</option>
+              <option value="neighbor">Neighbour</option>
+              <option value="friend">Friend</option>
+              <option value="nurse">Clinic Nurse</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="backupCaregiver">Backup Caregiver (Optional)</label>
+            <input type="text" id="backupCaregiver" placeholder="e.g. Thabo Molefe">
+          </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="sms-preview-section">
+          <h3 class="section-title">SMS Preview</h3>
+          <div class="sms-preview">
+            <div class="sms-header">
+              <span class="sms-sender">CareConnect</span>
+              <span>9:41</span>
+            </div>
+            <div class="sms-body">
+              <span id="smsLanguageLabel">Sawubona</span> <span id="smsNamePreview">[Name]</span>. Please take your <span class="highlight">[medication]</span> now.<br>
+              Reply <strong>1</strong> to confirm.
+            </div>
+            <div class="sms-time" id="smsTimePreview">08:00 AM</div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="reset" class="btn btn-outline">Clear Form</button>
+          <button type="submit" class="btn btn-primary">Save Patient</button>
+        </div>
+      </form>
+    </main>
+    <script src="../js/script.js"></script>
+  </body>
+</html>
